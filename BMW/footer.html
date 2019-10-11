@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页尾</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        #footer-body{
+            width:100%;height:330px;
+            background: #838383;
+            margin-top:100px;
+        }
+        #footer-body div.list{
+            width:65%;height:280px;
+            margin:20px auto;
+            color:#fff;
+            font-size:14px;
+        }
+        #footer-body .list div{
+            margin-bottom:22px;
+            display: flex;
+            justify-content: start;
+        }
+        #footer-body .list div:nth-child(5){
+            padding-bottom: 25px;
+            border-bottom: 1px solid #fff;
+        }
+        #footer-body .list div span{
+            display: inline-block;
+            width:110px;
+            float: left;
+        }
+        #footer-body ul{
+            list-style: none;
+            display: inline-block;
+        }
+        #footer-body ul li{
+            float: left;
+            margin-left:15px;
+        }
+        #footer-body ul li a{
+            color:#fff;
+            text-decoration: none;
+        }
+        #footer-body ul li a:hover{
+            color:#0653b6;
+        }   
+        #footer-body .list>ul li:first-child{
+            margin-left:0;
+        }
+        #footer-body .list>ul li:last-child>a{
+            background:url(images/footer/record.png) left no-repeat;
+            padding-left:21px;
+        }
+        #footer-body .list p{
+            margin-top:13px;
+            display: block;
+            width: 100%;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页尾 -->
+    <div id="footer-body">
+        <table></table>
+        <div class="list">
+            <div class="connect">
+                <span>联系我们</span>
+                <ul>
+                    <li><a href="">预约试驾</a></li>
+                    <li><a href="">咨询销售信息</a></li>
+                    <li><a href="">索取产品手册</a></li>
+                    <li><a href="">查找经销商</a></li>
+                    <li><a href="">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="quick-link">
+                <span>快速链接</span>
+                <ul>
+                    <li><a href="">BMW 官方旗舰店</a></li>
+                    <li><a href="">法律声明</a></li>
+                    <li><a href="">环保信息公开</a></li>
+                    <li><a href="">网站地图</a></li>
+                </ul>
+            </div>
+            <div class="BMW">
+                <span>BMW 天地</span>
+                <ul>
+                    <li><a href="">BMW 新闻</a></li>
+                    <li><a href="">BMW 汽车生产之旅</a></li>
+                    <li><a href="">大客户业务</a></li>
+                </ul>
+            </div>
+            <div class="website">
+                <span>其他宝马网站</span>
+                <ul>
+                    <li><a href="">华晨宝马</a></li>
+                    <li><a href="">BMW 互联驾驶在线商店</a></li>
+                </ul>
+            </div>
+            <div class="social">
+                <span>官方社交媒体</span>
+                <ul>
+                    <li><a href="">宝马中国官方微信</a></li>
+                    <li><a href="">宝马中国官方微博</a></li>
+                </ul>
+            </div>
+            <ul>
+                <li><a href="">京ICP备08004883号</a></li>
+                <li><a href="">京公网安备11010502038527号</a></li>
+            </ul>
+            <p>©BMW中国2019</p>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+</body>
+</html>

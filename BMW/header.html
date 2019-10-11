@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页头</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        /* 页头样式 */
+        /* 大屏样式 */
+        #header-body{
+            width:100%;height:100px;
+            background:#838383;
+            position: relative;
+        }
+        #header-body div.nav{
+            margin:60px auto;
+        }
+        #header-body ul{
+            list-style: none;
+            position: relative;
+            display: flex;
+            justify-content:center;
+            margin-right: 30%;
+        }
+        #header-body ul li{
+            float: left;
+            color:#fff;
+            font-size: 17px;
+            margin-left: 15px;
+        }
+        #header-body ul li:first-child{
+            display: none
+        }
+        ul li a{
+            color:#fff;
+            text-decoration: none;
+        }
+        ul li a:hover{
+            color:#0653b6;
+        }
+        #header-body>img{
+            width:100px;height:110px;
+            position: absolute;
+            top:10px;
+            right:18%;
+            z-index: 100;
+        }
+        /* 隐藏下拉菜单样式 */
+        .menu{
+            background: #838383;
+            display: none;
+        }
+        .menu ul::after{
+            display: block;
+            content: "";
+            clear: both;
+        }
+        .menu ul li{
+            display: block;
+            width:100%;
+            float: left;
+            color:#fff;
+            font-size: 17px;
+            border-top: 1px solid #fff;
+            padding: 8px 15px;
+        }
+        /* 中屏样式 */
+        @media screen and (max-width:868px){
+            #header-body{
+                height:50px;
+            }
+            #header-body div.nav{
+                width: 100%;
+                margin-top:15px;
+            }
+            #header-body ul{
+                justify-content:left;
+                margin-right:0;
+            }
+            #header-body ul li:first-child{
+                display: block;
+            }
+            #header-body ul li:nth-child(2),
+            #header-body ul li:nth-child(4),
+            #header-body ul li:nth-child(5),
+            #header-body ul li:nth-child(6){
+                display: none;
+            }
+            #header-body img{
+                width:80px;height:90px;
+            }
+            .menu ul li:nth-child(2){
+                display: none;
+            }
+        }
+        /* 小屏样式 */
+        @media screen and (max-width:568px){
+            #header-body ul li:nth-child(3){
+                display: none;
+            }
+            #header-body img{
+            width:60px;height:70px;
+            }
+            .menu ul li:nth-child(2){
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页头 -->
+    <div id="header-body">
+        <table></table>
+        <!-- 导航栏 -->
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="javascript:;">
+                        <span>三</span>
+                        <span>导航</span>
+                    </a>
+                </li>
+                <li><a href="">首页</a></li>
+                <li><a href="">全部车型</a></li>
+                <li><a href="">BMW 服务</a></li>
+                <li><a href="">BMW 天地</a></li>
+                <li><a href="">我的BMW</a></li>
+                <li><a href="">快速链接</a></li>
+                <li><a href="">搜索</a></li>
+            </ul>
+        </div>
+        <!-- 产品LOGO -->
+        <img src="images/header/logo.png" alt="">
+    </div>
+    <!-- 中小屏下拉菜单 -->
+    <div class="menu">
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><a href="">全部车型</a></li>
+            <li><a href="">BMW 服务</a></li>
+            <li><a href="">BMW 天地</a></li>
+            <li><a href="">我的BMW</a></li>
+        </ul>
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+        // 中小屏下拉菜单功能
+        $("#header-body ul li:first-child").click(function(){
+            $(".menu").slideToggle();
+        })
+    </script>
+</body>
+</html>

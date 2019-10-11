@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BMW 中国</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="import" href="header.html" id="page1"/>
+    <link rel="import" href="footer.html" id="page2"/>
+    <style>
+        #body{
+            width: 90%;
+            text-align: center;
+            margin:0 auto;
+            position: relative;
+        }
+        /* 了解详情鼠标获取焦点样式 */
+        .detail:hover{
+            color:#1c69d4;
+        }
+        /* 轮播图1样式 */
+        #body .carousel1{
+            width:100%;
+            position: relative;
+        }
+        #body .carousel1 img{
+            width: 100%;height:auto;
+        }
+        #body .carousel1 ul{
+            width: 100%;height:auto;
+            list-style: none;
+        }
+        #body .carousel1 .img li{
+            position: absolute;
+            top:0;left:0;
+        }
+        #body .carousel1 .num{
+            position: absolute;
+            text-align:center;
+            width:100%;
+            bottom:20px;
+        }
+        #body .carousel1 .num li{
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-color: darkgray;
+            color: white;
+            text-align: center;
+            line-height: 15px;
+            border-radius: 50%;
+            margin: 0 20px;
+        }
+        #body .carousel1 .num li:hover{
+            background-color: #696969;
+        }
+        #body .carousel1 .btn{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: darkgray;
+            color: white;
+            opacity: 0.5;
+            text-align: center;
+            line-height: 50px;
+            top: 50%;
+            margin-top: -25px;
+            display: none;
+        }
+        #body .carousel1 .left_btn{
+            left:0;
+        }
+        #body .carousel1 .right_btn{
+            right:0;
+        }
+        #body .carousel1:hover .btn{
+            display: inline-block;
+            cursor: pointer;
+        }
+        .current{
+            background-color:#1c69d4!important;
+        }
+        /* 车型样式 */
+        #body .carType ul{
+            list-style: none;
+            width:85%;
+            margin:0 auto;
+            display: flex;
+            justify-content: start;
+            flex-wrap: wrap;
+            margin:20px auto 50px;
+        }
+        #body .carType ul li{
+            width:16%;height:100px;
+            background:grey;
+            margin:2px;
+            color:#fff;
+            border:1px solid #bbb;
+            text-align: left;
+            line-height: 140px;
+            box-sizing: border-box;
+            padding: 10px;
+            cursor: pointer;
+        }
+        /* 车型隐藏下拉列表样式 */
+        #body .carType ul>div{
+            width: 100%;
+            box-sizing: border-box;
+            display: none;
+        }
+        #body .carType ul .cars{
+            width: 100%;
+            margin:15px 0;
+            text-align: left;
+            font-size: 14px;
+            color: #262626;
+            display: flex;
+            justify-content: start;
+            flex-wrap: wrap;
+        }
+        #body .carType ul .cars>p{
+            width: 100%;
+            color:#666;
+        }
+        #body .carType ul .cars div{
+            width: 25%;
+            cursor: pointer;
+        }
+        #body .carType ul .cars div p:nth-child(2){
+            font-size: 18px;
+        }
+        #body .carType ul .cars div p:last-child{
+            margin-top:10px;
+        }
+        #body .carType ul .cars div img{
+            width:285px;height:160px;
+        }
+        /* 车型交互功能样式 */
+        .typeColor{
+            color:#1c69d4!important;
+            background-color: #fff!important;
+        }
+        /* 轮播图2样式 */
+        #body .carousel2 img{
+            width:50%;height:auto;
+        }
+        /* 服务区样式 */
+        #body .server{
+            width:85%;height:auto;
+            margin:30px auto;
+            display: flex;
+            justify-content:space-between;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+        #body .server div{
+            width:49%;
+            border:1px solid #bbb;
+            padding: 15px;
+            margin-top:50px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        #body .server div img{
+            width:100%;height:auto;
+        }
+        #body .server div p{
+            margin-top:5px;
+            text-align: left;
+            font-size: 14px;
+        }
+        #body .server div p:nth-child(2){
+            font-size: 25px;
+        }
+        /* 首页底部样式 */
+        #body .bottom{
+            width:85%;
+            margin:0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+        #body .bottom div{
+            width:23%;height:auto;
+            border:1px solid #bbb;
+            padding: 15px;
+            margin-top:20px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        #body .bottom div img{
+            width:100%;height:auto;
+        }
+        #body .bottom div p{
+            margin-top:5px;
+            text-align: left;
+            font-size: 14px;
+        }
+        #body .bottom div p:nth-child(2){
+            font-size: 25px;
+        }
+        /* 右侧固定按钮样式 */
+        .rightFix{
+            width:40px;height:40px;
+            background-image: url("images/index/icon_chat.jpg");
+            position: fixed;
+            top:100px;right:0;
+        }
+        /*中屏样式*/
+        @media screen and (max-width:868px){
+            #body .carType ul li{
+                width:24%;
+            }
+            #body .carType ul .cars div{
+                width: 50%;
+            }
+            #body .bottom div{
+                width:48%;
+            }
+            #body .server div{
+                width:100%;
+            }
+        }
+        /*小屏样式*/
+        @media screen and (max-width:568px){
+            #body .carType ul li{
+                width:48%;
+            }
+            #body .carType ul .cars div{
+                width: 100%;
+            }
+            #body .bottom div{
+                width:100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页头 -->
+    <script type="text/javascript">
+        document.write(page1.import.body.innerHTML);
+    </script>
+    <!-- 页面主体 -->
+    <div id="body">
+        <!-- 轮播图1 -->
+        <div class="carousel1">
+            <ul class="img">
+                <li><img src="images/index/carousel/banner1.jpg" alt=""></li>
+                <li><img src="images/index/carousel/banner2.jpg" alt=""></li>
+                <li><img src="images/index/carousel/banner3.jpg" alt=""></li>
+                <li><img src="images/index/carousel/banner4.jpg" alt=""></li>
+                <li><img src="images/index/carousel/banner5.jpg" alt=""></li>
+            </ul>
+            <ul class="num">
+                <li class="current"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+            <div class="left_btn btn"><</div>
+            <div class="right_btn btn">></div>
+        </div>
+        <!-- 车型展示 -->
+        <div class="carType">
+            <ul>
+                <li class="c1"><img src="" alt="">全部车型</li>
+                <li class="c1"><img src="" alt="">BMW 1系</li>
+                <li class="c1"><img src="" alt="">BMW 2系</li>
+                <li class="c1"><img src="" alt="">BMW 3系</li>
+                <li class="c1"><img src="" alt="">BMW 4系</li>
+                <li class="c1"><img src="" alt="">BMW 5系</li>
+                <div id="c1">
+                    <div class="cars">
+                        <p class="detail">>BMW 1系</p>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                    </div>
+                </div>    
+                <li class="c2"><img src="" alt="">BMW 6系</li>
+                <li class="c2"><img src="" alt="">BMW 7系</li>
+                <li class="c2"><img src="" alt="">BMW 8系</li>
+                <li class="c2"><img src="" alt="">BMW Z系</li>
+                <li class="c2"><img src="" alt="">BMW M系</li>
+                <li class="c2"><img src="" alt="">BMW X系</li>
+                <div id="c2">
+                    <div class="cars">
+                        <p class="detail">>BMW 1系</p>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                    </div>
+                </div>
+                <li class="c3"><img src="" alt="">BMW i系</li>
+                <li class="c3"><img src="" alt="">电动性能</li>                    
+                <div id="c3">
+                    <div class="cars">
+                        <p class="detail">>BMW 1系</p>
+                        <div class="car">
+                            <img src="images/index/type/bmw-1.png" alt="">
+                            <p>BMW 1系三厢运动轿车</p>
+                            <p>车型售价￥198,800起</p>
+                            <p class="detail">>了解详情</p>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <!-- 轮播图2 -->
+        <div class="carousel2">
+            <img src="images/index/carousel/new1.jpg" alt="">
+        </div>
+        <!-- 服务专区 -->
+        <div class="server">
+            <div>
+                <img src="images/index/serve/server1.jpg" alt="">
+                <p>BMW 查找经销商</p>
+                <p>咨询服务一键直达</p>
+                <p class="detail">>了解详情</p>
+            </div>
+            <div>
+                <img src="images/index/serve/server1.jpg" alt="">
+                <p>BMW 查找经销商</p>
+                <p>咨询服务一键直达</p>
+                <p class="detail">>了解详情</p>
+            </div>
+            <div>
+                <img src="images/index/serve/server1.jpg" alt="">
+                <p>BMW 查找经销商</p>
+                <p>咨询服务一键直达</p>
+                <p class="detail">>了解详情</p>
+            </div>
+            <div>
+                <img src="images/index/serve/server1.jpg" alt="">
+                <p>BMW 查找经销商</p>
+                <p>咨询服务一键直达</p>
+                <p class="detail">>了解详情</p>
+            </div>
+        </div>
+        <!-- 主页底部 -->
+        <div class="bottom">
+            <div>
+                <img src="images/index/bottom/bottom2.jpg" alt="">
+                <p>BMW 官方车主俱乐部</p>
+                <p>一同尊享BMW之悦</p>
+                <p class="detail"><span>></span> 了解详情</p>
+            </div>
+            <div>
+                <img src="images/index/bottom/bottom2.jpg" alt="">
+                <p>BMW 官方车主俱乐部</p>
+                <p>一同尊享BMW之悦</p>
+                <p class="detail"><span>></span> 了解详情</p>
+            </div>
+            <div>
+                <img src="images/index/bottom/bottom2.jpg" alt="">
+                <p>BMW 官方车主俱乐部</p>
+                <p>一同尊享BMW之悦</p>
+                <p class="detail"><span>></span> 了解详情</p>
+            </div>
+            <div>
+                <img src="images/index/bottom/bottom2.jpg" alt="">
+                <p>BMW 官方车主俱乐部</p>
+                <p>一同尊享BMW之悦</p>
+                <p class="detail"><span>></span> 了解详情</p>
+            </div>
+        </div>
+        <!-- 右侧固定联系按钮 -->
+        <div class="rightFix">
+        </div>
+    </div>
+    <!-- 页尾 -->
+    <script type="text/javascript">
+        document.write(page2.import.body.innerHTML);
+    </script>
+    <!-- 页面交互功能 -->
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+        //轮播图效果
+        //父元素高度随子元素变化
+        var time=setInterval(height,1)
+        function height(){
+            $("#body .carousel1").css({
+                'height':$('#body .carousel1 img').css('height')
+            });
+        }
+        /*定义位置：由于图片个数与下侧顺序按钮数量一致，可通过位置进行关联*/
+        var index=0;
+        /*当鼠标放到顺序按钮上时：
+        获取当前顺序按钮的index
+        通过index获取该位置图片
+        */
+        $("#body .carousel1 .num li").click(function () {
+                $(this).addClass("current").siblings().removeClass("current");
+                index=$(this).index();
+        });
+        /*设置每一秒钟自动轮播：
+        1.获取当前位置序号：自加操作；当超过图片最大序号时序号设置为0
+        2.设置下侧顺序按钮及轮播图显示
+        */
+        var time=setInterval(move,2000);
+        function move() {
+            index++;
+            if (index==5){
+                index=0
+            }
+            $("#body .carousel1 .num li").eq(index).addClass("current").siblings().removeClass("current");
+            $("#body .carousel1 .img li").eq(index).animate({left:"0px"}).siblings().animate({left:"-2000px"});
+        };
+        /*当鼠标划入、划出轮播图区域时：
+        1.划入时停止自动轮播
+        2.划出时继续自动轮播
+        */
+        $("#body .carousel1").hover(function () {
+            clearInterval(time);
+        },
+        function () {
+            time=setInterval(move,2000);
+        });
+        /*点击右侧按钮时执行*/
+        $("#body .carousel1 .right_btn").click(function () {
+            move();
+        });
+        /*点击左侧按钮时执行*/
+        function moveL() {
+            index--;
+            if (index==-1){
+                index=4
+            }
+            $("#body .carousel1 .num li").eq(index).addClass("current").siblings().removeClass("current");
+            $("#body .carousel1 .img li").eq(index).animate({left:"0px"}).siblings().animate({left:"2000px"});
+        }
+        $("#body .carousel1 .left_btn").click(function () {
+            moveL();
+        });
+
+        // 车型展示种类方块鼠标经过效果
+        $("#body .carType ul li").mouseenter(function(){
+            $(this).addClass("typeColor").siblings().removeClass("typeColor");
+        }).mouseleave(function(){
+            $(this).removeClass("typeColor");
+        })
+        //隐藏汽车款式下拉功能
+        $("#body .carType ul li.c1").click(function(){
+            $("#c1").slideToggle().siblings("#c2,#c3").slideUp();
+        })
+        $("#body .carType ul li.c2").click(function(){
+            $("#c2").slideToggle().siblings("#c1,#c3").slideUp();
+        })
+        $("#body .carType ul li.c3").click(function(){
+            $("#c3").slideToggle().siblings("#c1,#c2").slideUp();
+        })
+        // 服务区鼠标移入样式
+        $("#body .server div p:last-child:hover").mouseenter(function(){
+            $(this).css("color","#1c69d4");
+        })
+    </script>
+</body>
+</html>
